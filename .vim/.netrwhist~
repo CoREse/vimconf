@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/cre/.vim'
+let g:netrw_dirhist_2='/etc/modules-load.d'
+let g:netrw_dirhist_3='/etc/systemd/system/multi-user.target.wants'
+let g:netrw_dirhist_4='/home/cre/Downloads/shadowsocks-qt5'
+let g:netrw_dirhist_5='/home/cre/Downloads/acroread'
