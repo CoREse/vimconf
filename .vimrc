@@ -1,32 +1,8 @@
-set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
+""" Principally The VIMRC file only stores settings of Plugins and some
+""" little basic sittings
 
-set diffexpr=MyDiff()
-function MyDiff()
-	let opt = '-a --binary '
-	if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-	if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-	let arg1 = v:fname_in
-	if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-	let arg2 = v:fname_new
-	if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-	let arg3 = v:fname_out
-	if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-	let eq = ''
-	if $VIMRUNTIME =~ ' '
-		if &sh =~ '\<cmd'
-			let cmd = '""' . $VIMRUNTIME . '\diff"'
-			let eq = '"'
-		else
-			let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-		endif
-	else
-		let cmd = $VIMRUNTIME . '\diff'
-	endif
-	silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+set nocompatible
+syntax on
 
 " Vim-LaTeX: {{{
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
@@ -61,76 +37,93 @@ filetype indent on
 "Learn Vim The Hard Way!
 
 " Basic Settings {{{
-echo ">^.^<"
+silent echo ">^.^<"
 
 let mapleader=","
 set number
 set relativenumber
 set showmatch
 set matchtime=2
+set hlsearch
+set incsearch
+
 " }}}
 
-" Mappings {{{
-noremap <leader>- ddp
-noremap <leader>_ ddkP
-inoremap <c-u> <esc>lvwUi
-noremap <c-u> vwU<esc>
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-inoremap <> <><esc>i
-nnoremap <leader>' i'<esc>ea'<esc>b
-nnoremap <leader>" i"<esc>ea"<esc>b
-vnoremap <leader>" di""<esc>P 
-noremap H 0
-noremap L $
-"the final killing machine!
-inoremap jk <esc>
-"and another one
-inoremap <esc> <nop>
-inoremap <Right> <nop> 
-inoremap <Left> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-onoremap in@ :<c-u>execute "normal! /\\w\\+@[a-zA-Z_.]\\+\r:nohlsearch\rgn"<cr><cr>
-" }}}
+" Vundle {{{
 
-" Abbreviations {{{
-iabbrev dthtml <!DOCTYPE HTML>
-iabbrev @@ zzdzhangzzd@gmail.com
-iabbrev ssig --<cr>Coldice Ray Esedra<cr>zzdzhangzzd@gmail.com
-iabbrev mysite crez.sinaapp.com
-" }}}
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" FileType-specific settings {{{
-augroup filetype_cpp
-	autocmd!
-	autocmd Filetype cpp setlocal wrap
-	autocmd FileType cpp nnoremap <localleader>c I//<esc>
-	autocmd filetype cpp :iabbrev <buffer> rt return
-	autocmd filetype cpp :iabbrev <buffer> return NOPENOPENOPE
-augroup END
-augroup filetype_html
-	autocmd!
-	autocmd filetype html nnoremap <buffer> <localleader>f Vatzf
-augroup END
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-augroup markdown
-	autocmd!
-	autocmd filetype markdown :onoremap ih :<c-u>execute "normal! ?^\\([=-]\\)\\1\\+$\r:nohlsearch\rkvg_"<cr><cr>
-	autocmd filetype markdown :onoremap ah :<c-u>execute "normal! ?^\\([=-]\\)\\1\\+$\r:nohlsearch\rg_vk0"<cr><cr>
-augroup END
-"}}}
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'altercation/vim-colors-solarized.git'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 "
-" Status Line {{{
-set statusline=%F\ -\ FileType:\ %y "File path and type
-set statusline+=%= "splitter
-set statusline+=%c,\ %l/%L "colum, current line/ total line
-set laststatus=2
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 " }}}
 
-"Vimscript file settings ------------------- {{{
-augroup filetype_vim
-	autocmd!
-	autocmd FileType vim setlocal foldmethod=marker
-augroup END
+" syntastic {{{
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " }}}
+
+" YouCompleteMe {{{
+
+" libclang {{{
+let g:clang_use_library=1
+let g:clang_debug=1
+let g:clang_library_path="/usr/lib"
+let g:clang_complete_copen=1
+
+" }}}
+
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_confirm_extra_conf=0
+let g:ycm_always_populate_location_list=1
+let g:ycm_min_num_of_chars_for_completion=2
+let g:ycm_complete_in_comments=1
+"highlight YcmErrorSection ctermbg=black
+"highlight YcmErrorline ctermbg=blue
+
+" }}}
+
+" Scheme {{{
+
+syntax enable
+set background=dark
+colorscheme solarized
+
+" }}}
+
