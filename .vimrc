@@ -70,6 +70,7 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -127,3 +128,8 @@ colorscheme solarized
 
 " }}}
 
+" Emmet-Vim {{{
+
+let g:user_emmet_leader_key=',e'
+
+" }}}

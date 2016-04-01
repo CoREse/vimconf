@@ -1,5 +1,13 @@
 """" This is the main Setting File of CRE
 
+" Status Line {{{
+set statusline=%F%M\ -\ FileType:\ %y "File path and modified and type
+
+set statusline+=%= "splitter
+set statusline+=%c,\ %l/%L "colum, current line/ total line
+set laststatus=2
+" }}}
+
 " Mappings {{{
 " I Mappings {{{
 
@@ -50,6 +58,10 @@ nnoremap <leader>N :NERDTreeToggle<cr>
 nnoremap <leader>f :call <SID>FoldColumnToggle()<cr>
 
 nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
+
+"control
+nnoremap J 10j
+nnoremap K 10k
 
 " }}}
 
@@ -115,6 +127,15 @@ augroup filetype_cpp
 	autocmd filetype cpp setlocal foldmethod=syntax
 	autocmd FileType cpp setlocal foldlevel=1
 	autocmd FileType cpp :nnoremap <localleader>uc ^d/[^/]<cr>:nohlsearch<cr>
+	setlocal statusline=%F%M\ -\ FileType:\ %y "File path and modified and type
+	"syntastic
+	setlocal statusline+=\ -\ SYN:%#warningmsg#
+	setlocal statusline+=%{SyntasticStatuslineFlag()}
+	setlocal statusline+=%*
+
+	setlocal statusline+=%= "splitter
+	setlocal statusline+=%c,\ %l/%L "colum, current line/ total line
+	setlocal laststatus=2
 augroup END
 augroup filetype_html
 	autocmd!
@@ -125,6 +146,15 @@ augroup markdown
 	autocmd!
 	autocmd filetype markdown :onoremap ih :<c-u>execute "normal! ?^\\([=-]\\)\\1\\+$\r:nohlsearch\rkvg_"<cr><cr>
 	autocmd filetype markdown :onoremap ah :<c-u>execute "normal! ?^\\([=-]\\)\\1\\+$\r:nohlsearch\rg_vk0"<cr><cr>
+augroup END
+
+augroup filetype_tex
+	autocmd!
+	autocmd FileType tex let maplocalleader=','
+	autocmd filetype tex inoremap <buffer> <localleader>nn $$<esc>i
+	autocmd FileType tex inoremap <buffer> <localleader>{ {}<esc>i
+	autocmd FileType tex inoremap <buffer> <localleader>ls _{}<esc>i
+	autocmd FileType tex inoremap <buffer> <localleader>us ^{}<esc>i
 augroup END
 "Vimscript file settings ------------------- {{{
 augroup filetype_vim
@@ -139,14 +169,3 @@ augroup END
 " }}}
 "}}}
 
-" Status Line {{{
-set statusline=%F%M\ -\ FileType:\ %y "File path and modified and type
-"syntastic
-set statusline+=\ -\ SYN:%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-set statusline+=%= "splitter
-set statusline+=%c,\ %l/%L "colum, current line/ total line
-set laststatus=2
-" }}}
