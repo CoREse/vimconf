@@ -115,34 +115,7 @@ endfunction
 " }}}
 
 " FileType-Specific Settings {{{
-augroup filetype_cpp
-	autocmd!
-	autocmd Filetype cpp setlocal wrap
-	autocmd Filetype cpp let maplocalleader=','
-	autocmd FileType cpp nnoremap <localleader>c I//<esc>
-	autocmd filetype cpp :iabbrev <buffer> rt return
-	autocmd filetype cpp :iabbrev <buffer> return NOPENOPENOPE
-	nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-	nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
-	autocmd filetype cpp setlocal foldmethod=syntax
-	autocmd FileType cpp setlocal foldlevel=1
-	autocmd FileType cpp :nnoremap <localleader>uc ^d/[^/]<cr>:nohlsearch<cr>
-	setlocal statusline=%F%M\ -\ FileType:\ %y "File path and modified and type
-	"syntastic
-	setlocal statusline+=\ -\ SYN:%#warningmsg#
-	setlocal statusline+=%{SyntasticStatuslineFlag()}
-	setlocal statusline+=%*
-
-	setlocal statusline+=%= "splitter
-	setlocal statusline+=%c,\ %l/%L "colum, current line/ total line
-	setlocal laststatus=2
-
-	"C++ NOTE
-	autocmd filetype cpp nnoremap <localleader>cn ggO/* File: <C-R>%<CR>Author: CRE<CR>Last Edited: <C-R>=strftime("%c")<CR><CR>/<CR><esc>
-	autocmd filetype cpp ca <buffer> w %s/\*\ Last\ Edited:.*$/\*\ Last\ Edited:\ <C-R>=strftime("%c")<cr>/g<CR>:nohlsearch<CR>:w<CR>
-	autocmd filetype cpp ca <buffer> x %s/\*\ Last\ Edited:.*$/\*\ Last\ Edited:\ <C-R>=strftime("%c")<cr>/g<CR>:x<CR>
-	autocmd BufNewFile *.cpp exe "normal i/* File: ".@%."\rAuthor: CRE\rLast Edited: ".strftime("%c")."\r/\r"
-augroup END
+" CPP specific settings are in CPP.vim in this directory
 augroup filetype_html
 	autocmd!
 	autocmd filetype html nnoremap <buffer> <localleader>f Vatzf
@@ -170,7 +143,7 @@ augroup filetype_vim
 	autocmd FileType vim :iabbrev == ==#
 	autocmd FileType vim :nnoremap <localleader>c I"<esc>
 	autocmd FileType vim :nnoremap <localleader>uc ^d/[^"]<cr>:nohlsearch<cr>
-	autocmd FileType vim :ca <buffer> x w<cr>:source %<cr>:q<cr>
+	autocmd FileType vim :ca <buffer> x w<cr>:source %<cr>:q
 augroup END
 " }}}
 "}}}
