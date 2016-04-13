@@ -141,6 +141,7 @@ augroup filetype_cpp
 	autocmd filetype cpp nnoremap <localleader>cn ggO/* File: <C-R>%<CR>Author: CRE<CR>Last Edited: <C-R>=strftime("%c")<CR><CR>/<CR><esc>
 	autocmd filetype cpp ca <buffer> w %s/\*\ Last\ Edited:.*$/\*\ Last\ Edited:\ <C-R>=strftime("%c")<cr>/g<CR>:nohlsearch<CR>:w<CR>
 	autocmd filetype cpp ca <buffer> x %s/\*\ Last\ Edited:.*$/\*\ Last\ Edited:\ <C-R>=strftime("%c")<cr>/g<CR>:x<CR>
+	autocmd BufNewFile *.cpp exe "normal i/* File: ".@%."\rAuthor: CRE\rLast Edited: ".strftime("%c")."\r/\r"
 augroup END
 augroup filetype_html
 	autocmd!
