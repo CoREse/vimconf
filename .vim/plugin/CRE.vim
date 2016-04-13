@@ -136,6 +136,11 @@ augroup filetype_cpp
 	setlocal statusline+=%= "splitter
 	setlocal statusline+=%c,\ %l/%L "colum, current line/ total line
 	setlocal laststatus=2
+
+	"C++ NOTE
+	autocmd filetype cpp nnoremap <localleader>cn ggO/* File: <C-R>%<CR>Author: CRE<CR>Last Edited: <C-R>=strftime("%c")<CR><CR>/<CR><esc>
+	autocmd filetype cpp ca <buffer> w %s/\*\ Last\ Edited:.*$/\*\ Last\ Edited:\ <C-R>=strftime("%c")<cr>/g<CR>:nohlsearch<CR>:w<CR>
+	autocmd filetype cpp ca <buffer> x %s/\*\ Last\ Edited:.*$/\*\ Last\ Edited:\ <C-R>=strftime("%c")<cr>/g<CR>:x<CR>
 augroup END
 augroup filetype_html
 	autocmd!
@@ -164,7 +169,7 @@ augroup filetype_vim
 	autocmd FileType vim :iabbrev == ==#
 	autocmd FileType vim :nnoremap <localleader>c I"<esc>
 	autocmd FileType vim :nnoremap <localleader>uc ^d/[^"]<cr>:nohlsearch<cr>
-	autocmd FileType vim :cnoremap x<cr> w<cr>:source %<cr>:q<cr>
+	autocmd FileType vim :ca <buffer> x w<cr>:source %<cr>:q<cr>
 augroup END
 " }}}
 "}}}
