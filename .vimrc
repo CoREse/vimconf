@@ -4,6 +4,14 @@
 set nocompatible
 syntax on
 
+if has('win32') || has('win64')
+	let $VIMHOME = $VIM."/vimfiles"
+else
+	let $VIMHOME = $HOME."/.vim"
+endif
+
+let $CREHOME=$VIMHOME."/plugin/CRE.vim"
+
 " Vim-LaTeX: {{{
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 filetype plugin on

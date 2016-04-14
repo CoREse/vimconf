@@ -1,15 +1,4 @@
-function! s:CreatHeader()
-	exe "0r HEADFILE.cpp"
-	let lc=system("wc -l HEADFILE.cpp")
-	exe "1,".lc[0]."s/<FILENAME>/".@%."/g"
-endfunction
-
-function! s:UpdateTime()
-	exe "%s/\*\ Last\ Edited:.*$/\*\ Last\ Edited:\ ".strftime("%c")."/g"
-	exe "nohlsearch"
-	exe "normal! ``"
-endfunction
-
+source $CREHOME/HeadSupport.vim
 augroup filetype_cpp
 	autocmd!
 	autocmd Filetype cpp setlocal wrap
@@ -33,9 +22,9 @@ augroup filetype_cpp
 	setlocal laststatus=2
 
 	"C++ NOTE
-	autocmd filetype cpp nnoremap <localleader>cn :call <SID>CreatHeader()<CR>
-	autocmd filetype cpp ca <buffer> w call <SID>UpdateTime()<CR>:w
-	autocmd filetype cpp ca <buffer> x call <SID>UpdateTime()<CR>:x
-	autocmd BufNewFile *.cpp call <SID>CreatHeader() | exe "normal! G"
+	autocmd filetype cpp nnoremap <localleader>cn :call CRECreatHeader(&ft)<CR>
+	autocmd filetype cpp ca <buffer> w call CREUpdateTime()<CR>:w
+	autocmd filetype cpp ca <buffer> x call CREUpdateTime()<CR>:x
+	autocmd BufNewFile *.cpp call CRECreatHeader(&ft) | exe "normal! G"
 augroup END
 
