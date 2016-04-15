@@ -5,8 +5,10 @@ function! CRECreatHeader(HEADFILETYPE)
 endfunction
 
 function! CREUpdateTime()
+	let LastLine=line(".")
+	let LastCol=col(".")
 	exe "silent! %s/\*\ Last\ Edited:.*$/\*\ Last\ Edited:\ ".strftime("%c")."/g"
 	exe "nohlsearch"
-	exe "normal! ``"
+	call cursor(LastLine,LastCol)
 endfunction
 

@@ -22,7 +22,7 @@ augroup filetype_cpp
 	setlocal laststatus=2
 
 	"C++ NOTE
-	autocmd filetype cpp nnoremap <localleader>cn :call CRECreatHeader(&ft)<CR>
+	autocmd filetype cpp nnoremap <buffer> <localleader>cn :call CRECreatHeader(&ft)<CR>
 	autocmd filetype cpp ca <buffer> w call CREUpdateTime()<CR>:w
 	autocmd filetype cpp ca <buffer> x call CREUpdateTime()<CR>:x
 	autocmd BufNewFile *.cpp call CRECreatHeader(&ft) | exe "normal! G"
