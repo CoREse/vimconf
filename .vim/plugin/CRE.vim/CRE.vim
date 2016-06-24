@@ -148,3 +148,9 @@ augroup END
 " }}}
 "}}}
 
+"Start Up {{{
+if filereadable('.babies')
+	echom 'yes!'
+endif
+
+" }}}
