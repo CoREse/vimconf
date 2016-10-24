@@ -43,8 +43,10 @@ nnoremap <leader>sc :source $HOME/.vim/plugin/CRE.vim<cr>
 nnoremap <leader>st :w<cr>:source %<cr>
 nnoremap <leader>' i'<esc>ea'<esc>b
 nnoremap <leader>" i"<esc>ea"<esc>b
-noremap H 0
-noremap L $
+"noremap H 0
+noremap H 10h
+"noremap L $
+noremap L 10l
 nnoremap <leader>l :execute 'rightbelow vsplit'. bufname("#")<cr>
 nnoremap <leader>w :match Error /\v\s+$/<cr>
 nnoremap <leader>W :execute 'normal! /\v\s+$/'."\r:nohlsearch\rdvgn"<cr>
@@ -62,6 +64,9 @@ nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
 "control
 nnoremap J 10j
 nnoremap K 10k
+
+" for YCM
+nnoremap <leader>jd :YcmCompleter GoTo<cr>
 
 " }}}
 
