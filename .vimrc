@@ -55,6 +55,8 @@ set matchtime=2
 set hlsearch
 set incsearch
 
+set encoding=utf-8
+
 " }}}
 
 " Vundle {{{
