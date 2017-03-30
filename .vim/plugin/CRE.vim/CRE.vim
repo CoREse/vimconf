@@ -82,6 +82,9 @@ onoremap in@ :<c-u>execute "normal! /\\w\\+@[a-zA-Z_.]\\+\r:nohlsearch\rgn"<cr><
 
 " }}}
 
+" C Mappings {{{
+" }}}
+
 " }}}
 
 " Abbreviations {{{
@@ -89,6 +92,8 @@ iabbrev dthtml <!DOCTYPE HTML>
 iabbrev @@ zzdzhangzzd@gmail.com
 iabbrev ssig --<cr>Coldice Ray Esedra<cr>zzdzhangzzd@gmail.com
 iabbrev mysite crez.sinaapp.com
+
+cabbrev w!! w !sudo tee > /dev/null %
 " }}}
 
 " Functions {{{
