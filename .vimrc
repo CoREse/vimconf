@@ -78,7 +78,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic.git'
+"Plugin 'scrooloose/syntastic.git'
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'mattn/emmet-vim'
 
