@@ -9,18 +9,30 @@ if !exists("b:OnBufReadFunctions")
 endif 
 
 function! s:OnWrite()
+	if !exists("b:OnWriteFunctions")
+		let b:OnWriteFunctions=[]
+	endif
+
 	for F in b:OnWriteFunctions
 		call F()
 	endfor
 endfunction
 
 function! s:OnWriteAndQuit()
+	if !exists("b:OnWriteAndQuitFunctions")
+		let b:OnWriteAndQuitFunctions=[]
+	endif 
+
 	for F in b:OnWriteAndQuitFunctions
 		call F()
 	endfor
 endfunction
 
 function! s:OnBufRead()
+	if !exists("b:OnBufReadFunctions")
+		let b:OnBufReadFunctions=[]
+	endif 
+
 	for F in b:OnBufReadFunctions
 		call F()
 	endfor
