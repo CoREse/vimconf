@@ -67,6 +67,7 @@ nnoremap K 10k
 
 " for YCM
 nnoremap <leader>jd :YcmCompleter GoTo<cr>
+nnoremap <leader>vd :vsplit<cr>:YcmCompleter GoTo<cr>
 
 " }}}
 
