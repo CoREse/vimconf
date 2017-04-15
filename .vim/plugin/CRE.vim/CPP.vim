@@ -3,6 +3,7 @@ source $CREHOME/Functional.vim
 source $CREHOME/OnEvent.vim
 augroup filetype_cpp
 	autocmd!
+	autocmd FileType cpp source $CREHOME/CPP.vim
 	autocmd Filetype cpp setlocal wrap
 	autocmd Filetype cpp let maplocalleader=','
 	autocmd FileType cpp nnoremap <localleader>c I//<esc>
@@ -16,7 +17,7 @@ augroup filetype_cpp
 	setlocal statusline=%F%M\ -\ FileType:\ %y "File path and modified and type
 	"syntastic
 	setlocal statusline+=\ -\ SYN:%#warningmsg#
-	setlocal statusline+=%{SyntasticStatuslineFlag()}
+	"setlocal statusline+=%{SyntasticStatuslineFlag()}
 	setlocal statusline+=%*
 
 	setlocal statusline+=%= "splitter
@@ -26,11 +27,13 @@ augroup filetype_cpp
 	"C++ NOTE
 	autocmd filetype cpp nnoremap <buffer> <localleader>cn :call CRECreatHeader(&ft)<CR>
 	if !exists("b:UNIQUE_CPPOnWrite")
-		autocmd filetype cpp let b:OnWriteFunctions= Append(b:OnWriteFunctions,function("CREUpdateTime"))
+		"autocmd filetype cpp let b:OnWriteFunctions= Append(b:OnWriteFunctions,function("CREUpdateTime"))
+		let b:OnWriteFunctions= Append(b:OnWriteFunctions,function("CREUpdateTime"))
 		let b:UNIQUE_CPPOnWrite=1
 	endif
 	if !exists("b:UNIQUE_CPPOnWriteAndQuit")
-		autocmd filetype cpp let b:OnWriteAndQuitFunctions= Append(b:OnWriteAndQuitFunctions,function("CREUpdateTime"))
+		"autocmd filetype cpp let b:OnWriteAndQuitFunctions= Append(b:OnWriteAndQuitFunctions,function("CREUpdateTime"))
+		let b:OnWriteAndQuitFunctions= Append(b:OnWriteAndQuitFunctions,function("CREUpdateTime"))
 		let b:UNIQUE_CPPOnWriteAndQuit=1
 	endif
 	autocmd BufNewFile *.cpp call CRECreatHeader(&ft) | exe "normal! G"
