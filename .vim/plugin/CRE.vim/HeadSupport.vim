@@ -1,4 +1,4 @@
-function! CRECreatHeader(HEADFILETYPE)
+function! CRECreateHeader(HEADFILETYPE)
 	exe "0r ".$CREHOME."/HEADFILE.".a:HEADFILETYPE
 	let lc=system("wc -l ".$CREHOME."/HEADFILE.".a:HEADFILETYPE)
 	exe "silent! 1,".lc[0]."s/<FILENAME>/".@%."/g"

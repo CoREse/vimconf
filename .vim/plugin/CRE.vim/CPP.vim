@@ -3,7 +3,6 @@ source $CREHOME/Functional.vim
 source $CREHOME/OnEvent.vim
 augroup filetype_cpp
 	autocmd!
-	autocmd FileType cpp source $CREHOME/CPP.vim
 	autocmd Filetype cpp setlocal wrap
 	autocmd Filetype cpp let maplocalleader=','
 	autocmd FileType cpp nnoremap <localleader>c I//<esc>
@@ -26,6 +25,12 @@ augroup filetype_cpp
 
 	"C++ NOTE
 	autocmd filetype cpp nnoremap <buffer> <localleader>cn :call CRECreatHeader(&ft)<CR>
+	autocmd BufNewFile *.cpp call CRECreateHeader(&ft) | exe "normal! G"
+
+	autocmd FileType cpp call CRECPPSetUpdate()
+augroup END
+
+function! CRECPPSetUpdate()
 	if !exists("b:UNIQUE_CPPOnWrite")
 		"autocmd filetype cpp let b:OnWriteFunctions= Append(b:OnWriteFunctions,function("CREUpdateTime"))
 		let b:OnWriteFunctions= Append(b:OnWriteFunctions,function("CREUpdateTime"))
@@ -36,6 +41,4 @@ augroup filetype_cpp
 		let b:OnWriteAndQuitFunctions= Append(b:OnWriteAndQuitFunctions,function("CREUpdateTime"))
 		let b:UNIQUE_CPPOnWriteAndQuit=1
 	endif
-	autocmd BufNewFile *.cpp call CRECreatHeader(&ft) | exe "normal! G"
-augroup END
-
+endfunction
