@@ -15,6 +15,9 @@ inoremap <c-u> <esc>lvwUi
 inoremap <> <><esc>i
 "the final killing machine!
 inoremap jk <esc>
+inoremap Jk <esc>
+inoremap JK <esc>
+inoremap jK <esc>
 "and another one
 inoremap <esc> <nop>
 inoremap <Right> <nop> 
@@ -76,6 +79,10 @@ nnoremap <leader>fi :YcmCompleter FixIt<cr>
 " V Mappings {{{
 
 vnoremap <leader>" di""<esc>P 
+vnoremap jk <esc>
+vnoremap jK <esc>
+vnoremap Jk <esc>
+vnoremap JK <esc>
 
 " }}}
 
