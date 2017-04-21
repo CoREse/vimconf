@@ -79,10 +79,10 @@ nnoremap <leader>fi :YcmCompleter FixIt<cr>
 " V Mappings {{{
 
 vnoremap <leader>" di""<esc>P 
-vnoremap jk <esc>
-vnoremap jK <esc>
-vnoremap Jk <esc>
-vnoremap JK <esc>
+vnoremap J 10j
+vnoremap K 10k
+vnoremap H 10h
+vnoremap L 10l
 
 " }}}
 
