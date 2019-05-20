@@ -19,11 +19,11 @@ inoremap Jk <esc>
 inoremap JK <esc>
 inoremap jK <esc>
 "and another one
-inoremap <esc> <nop>
-inoremap <Right> <nop> 
-inoremap <Left> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
+"inoremap <esc> <nop>
+"inoremap <Right> <nop> 
+"inoremap <Left> <nop>
+"inoremap <Up> <nop>
+"inoremap <Down> <nop>
 
 inoremap <leader>" ""<esc>i
 inoremap <leader>' ''<esc>i
